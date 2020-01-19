@@ -3,8 +3,8 @@ const moment = require('moment');
 moment().format();
 const config = {
     'headers': {
-        'x-auth-client': '7lcoarotfamtjjegqjbbankvzb9uyz6',
-        'x-auth-token': '2lu3f9klbzpdcm4xrxi89eiyabiegfm'
+        'x-auth-client': '' // BigC Auth Client,
+        'x-auth-token': '' // BigC Auth Token
     }
 }
 
