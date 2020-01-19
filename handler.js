@@ -8,6 +8,8 @@ const config = {
     }
 }
 
+const store_id = '' // BigC Store Id
+
 // primary function -- process events and produce track call
 exports.processEvents = async (event) => {
   let eventBody = event.payload.body;
@@ -45,7 +47,7 @@ exports.processEvents = async (event) => {
 // network request to retrieve order data
 const getOrder = async orderId => {
     let orderNo = orderId
-    const response = await axios.get('https://api.bigcommerce.com/stores/dukhrgn8mp/v2/orders/'+ orderNo, config);
+    const response = await axios.get('https://api.bigcommerce.com/stores/${store_id}/v2/orders/'+ orderNo, config);
     const order = response.data;
     return order
 }
@@ -53,7 +55,7 @@ const getOrder = async orderId => {
 // network request to retrieve product data by orderId
 const getProducts = async orderId => {
     let orderNo = orderId
-    const response = await axios.get('https://api.bigcommerce.com/stores/dukhrgn8mp/v2/orders/' + orderNo + '/products', config);
+    const response = await axios.get('https://api.bigcommerce.com/stores/${store_id}/v2/orders/' + orderNo + '/products', config);
     const products = response.data;
     return products
 }
@@ -83,7 +85,7 @@ const findFormFields = function search(nameKey, myArray){
 const getCustomer = async orderId => {
   const order = await getOrder(orderId);
   const customer_id = String(order.customer_id)
-  const response = await axios.get('https://api.bigcommerce.com/stores/dukhrgn8mp/v2/customers/' + customer_id, config);
+  const response = await axios.get('https://api.bigcommerce.com/stores/${store_id}/v2/customers/' + customer_id, config);
   let customer = response.data;
   if (customer.form_fields){
     customer.janrain_id = findFormFields("JanrainId",customer.form_fields);
